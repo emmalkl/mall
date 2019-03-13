@@ -10,3 +10,6 @@ koa：同express    mongoDB：数据库，键值对数据库
          进入项目： cd shop
          运行项目： npm run serve
 readme??怎么写
+组件库：vant vux element iview
+一、移动端屏幕适配：百分比/媒体查询/flex弹性盒模型/rem 
+2.首页布局和vant
