@@ -17,8 +17,8 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 2rem;
-  line-height: 2rem;
+  height: 1rem;
+  line-height: 1rem;
   /*sass*/
   &-item{
     flex-grow: 1;

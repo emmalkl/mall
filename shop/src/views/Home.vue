@@ -1,5 +1,5 @@
 <template>
-   <div>首页
+   <div>首页  MBTI性格测试
      <van-button type="default">默认按钮</van-button>
    </div>
    
@@ -11,6 +11,6 @@
   }
 </script>
 
-<style lang="sass">
-
+<style lang="scss">
+   
 </style>

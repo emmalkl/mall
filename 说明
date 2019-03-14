@@ -13,3 +13,12 @@ readme??怎么写
 组件库：vant vux element iview
 一、移动端屏幕适配：百分比/媒体查询/flex弹性盒模型/rem 
 2.首页布局和vant
+   安装vant  npm install vant --save
+   //完全引入
+   import Vant from 'vant'
+   import 'vant/lib/index.css'
+   Vue.use(Vant)
+   //部分引入 npm i bable-plugin-import -D
+
+   注：npm install xxx --save-dev 安装在开发环境下
+   
