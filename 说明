@@ -14,11 +14,22 @@ readme??怎么写
 一、移动端屏幕适配：百分比/媒体查询/flex弹性盒模型/rem 
 2.首页布局和vant
    安装vant  npm install vant --save
-   //完全引入
+   //完全引入（main.js）
    import Vant from 'vant'
    import 'vant/lib/index.css'
    Vue.use(Vant)
-   //部分引入 npm i bable-plugin-import -D
-
+   //部分引入 npm i bable-plugin-import -D      （main.js）
+   import {Button,Icon,NavBar} from 'vant'
+   Vue.use(Button).use(Icon).use(NavBar)
    注：npm install xxx --save-dev 安装在开发环境下
-   
+3.slot  v-model双向数据绑定
+4.<img v-lazy="item.imgsrc" alt=""图片懒加载  加载前两张之后再加载第三张
+  <img ：src="item.imgsrc" alt="">
+5.home.vue  
+        导航栏：vant组件库  van-nav-bar
+        轮播图：vant组件库  van-swipe
+        热门产品 npm install vue-awesome-swiper --save     (npm官网) http://idangero.us/swiper/api/
+  app.vue 
+        底部栏：vant  van-tabbar
+6.弹性盒模型：display：flex
+             flex-grow：1；width：0；
