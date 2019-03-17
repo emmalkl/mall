@@ -28,8 +28,66 @@ readme??怎么写
 5.home.vue  
         导航栏：vant组件库  van-nav-bar
         轮播图：vant组件库  van-swipe
-        热门产品 npm install vue-awesome-swiper --save     (npm官网) http://idangero.us/swiper/api/
+        热门产品： npm install vue-awesome-swiper --save     (npm官网) http://idangero.us/swiper/api/
+        推荐商品：弹性盒模型  justify-content: space-around;
   app.vue 
         底部栏：vant  van-tabbar
 6.弹性盒模型：display：flex
              flex-grow：1；width：0；
+7.引入swiper
+  // require styles
+      import 'swiper/dist/css/swiper.css'
+      
+      import { swiper, swiperSlide } from 'vue-awesome-swiper'
+      
+      export default {
+        components: {
+          swiper,
+          swiperSlide
+        }
+      }
+8.ajax&axios: axios基于promise的http库:npm install axios --save          promise解决回调深渊 .then 异步
+              ajax原理代码在Ajax.vue中    
+9.vbase快捷创建vue
+10.在main.js引入mock.js    npm install mockjs --save
+   mockjs: 生成随即数据，拦截ajax
+   使用mockjs 方法一：在mock.js中： import Mock from 'mockjs'
+              写一个json文件
+              在mock.js中： Mock.mock('url',{data=data.list})
+              方法二：
+              Mock.mock('http://www.alin.com/getuser',{
+              'name|2':'alin',//两个name  alinalin
+              'age|18-30':20//age：18-30中的随机数  20只是表示数字类型
+              })  等等。。。。
+注意说明：home.vue加载后会执行生命周期函数 created（）----axios.get('url').then(res=>{})----
+        url是自己在mockjs自己写的getlist方法：Mock.mock('http://www.alin.com/getlist',{data:data.list})  
+        Mock：是import Mock from 'mockjs'       data：是import data from './data.json'
+        ----然后就返回了自己写的json了
+11.后台统一接口配置： service.config.js [名字竟然不能拼错emmm]
+        const MOCKURL='http://www.alin.com/';//mock模拟的url
+        const SERVER='';//真实url
+        const URL={
+            getVarietyItem : MOCKURL + 'getVarietyItem',
+            getHotProduct : MOCKURL + 'getHotProduct'
+        };
+        export default URL;//导出
+        在home.vue中：import url from '@/service.config.js' ----  let url=url.getVarietyItem
+12.koa2: 基于node.js平台的下一代web开发框架
+   基于koa的框架egg  thinkjs
+   安装：node  ==>>  npm init -y  ==>>  npm install koa --save
+   
+【注意】async await  : async函数返回promise对象  await只能在async函数内部使用  js异步操作解决方案   具体见1-async.js 和 2-async.js
+  koa实现get/post请求：
+  1.  let url=ctx.url;
+      let query=ctx.query;
+      let queryString = ctx.querystring;
+      ctx.body={
+          url,
+          query,//返回格式化好的参数对象
+          queryString //返回的是请求的字符串
+      }
+      //结果：地址栏输入http://localhost:3000/?username=alin&age=19  
+      //对应的结果是{"url":"/?username=alin&age=19","query":{"username":"alin","age":"19"},"queryString":"username=alin&age=19"}
+  2.post.js:  为了拿到key 和value的值的话需要解析data字符串  需要安装：npm install koa-bodyparser --save
+
+13. 
