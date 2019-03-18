@@ -75,7 +75,8 @@ readme??怎么写
 12.koa2: 基于node.js平台的下一代web开发框架
    基于koa的框架egg  thinkjs
    安装：node  ==>>  npm init -y  ==>>  npm install koa --save
-   
+   通过利用 async 函数，Koa 帮你丢弃回调函数，并有力地增强错误处理
+
 【注意】async await  : async函数返回promise对象  await只能在async函数内部使用  js异步操作解决方案   具体见1-async.js 和 2-async.js
   koa实现get/post请求：
   1.  let url=ctx.url;
@@ -89,5 +90,75 @@ readme??怎么写
       //结果：地址栏输入http://localhost:3000/?username=alin&age=19  
       //对应的结果是{"url":"/?username=alin&age=19","query":{"username":"alin","age":"19"},"queryString":"username=alin&age=19"}
   2.post.js:  为了拿到key 和value的值的话需要解析data字符串  需要安装：npm install koa-bodyparser --save
+              变简单了，不用去监听事件(在5_bodyparser.js)
+  3.koa-router(npm): npm install koa-router --save
+      https://www.npmjs.com/package/koa-router#module_koa-router--Router+get%7Cput%7Cpost%7Cpatch%7Cdelete%7Cdel
+    一、
+  eg  const Router=require('koa-router')
+      const router=new Router();
 
-13. 
+      router.get('/abc',(ctx,next)=>{
+          console.log(ctx);//request对象
+          console.log(next);//[Function:next]
+          ctx.body='alin';
+      })
+      app.use(router.routes());
+      app.use(router.allowedMethods());
+      二、
+    路由前缀：解决 当你的请求地址前需要再配‘/hsdaiulh’ 时 这个问题  
+             方法：const router=new Router({prefix:'/alindeqianzhui'});
+      三、传参params
+      router.get('/abc',(ctx,next)=>{
+      ctx.body=ctx.query;
+      })
+  4.cookie:例子见9_cookie.js
+  5.ejs模板： 安装 npm install koa-views --save
+                  npm install ejs --save
+  MVC：m（与数据库建立连接部分）v（试图）c（m与c连接部分，v发送请求业务逻辑层，数据库结果返回给界面）
+
+             用法：koa下建立ejs.js
+                        const Koa=require('koa');
+                        const app = new Koa();
+                        const views=require('koa-views');
+                        const path=require('path');//webpack
+                        //加载模板
+                        app.use(views(path.join(__dirname,'./views'),{
+                            extension:'ejs'
+                        }))
+                        app.use(async ctx => {
+                            let title='hello alin';
+                            await ctx.render('index',{title});
+                        });
+                  ./views/index.ejs
+                        <h1><%=title%></h1>
+
+
+
+13. mongoDB(文件存储 频繁读写 ):
+  安装： www.mongodb.com 
+      环境变量bin
+      命令：mongodb  
+  常用命令：
+      mongo:在cmd中输入
+      变量：var
+      函数：function
+        eg  var a=5;
+            > print(a);
+            5
+            > function sum(x,y){
+            ... return x+y;
+            ... }
+            > sum(5，6);
+      输出：print
+      显示数据库：show dbs
+      创建/进入 shop数据库：use shop
+      db:当前命令在哪个数据库，显示当前数据库
+      显示集合：show collections
+      插入数据：db.user.insert({"name":"alin"})
+      查询：db.user.find()  db.user.findOne()
+      修改：db.user.update({查询},{修改})
+      删除：db.user.remove（条件）
+      删除聚合：db.user.drop()
+      删除数据库：db.user.dropDatabase()
+
+      加载js文件 load('./xx.js')
