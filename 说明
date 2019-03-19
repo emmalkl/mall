@@ -154,11 +154,51 @@ readme??怎么写
       创建/进入 shop数据库：use shop
       db:当前命令在哪个数据库，显示当前数据库
       显示集合：show collections
+    eg      
+            > show dbs
+            admin   0.000GB
+            config  0.000GB
+            local   0.000GB
+            > use shop
+            > db
+            shop
+            > show collections
+            > load('./2.js')     注意这点非常需要
       插入数据：db.user.insert({"name":"alin"})
       查询：db.user.find()  db.user.findOne()
       修改：db.user.update({查询},{修改})
       删除：db.user.remove（条件）
-      删除聚合：db.user.drop()
-      删除数据库：db.user.dropDatabase()
-
+      删除集合：db.user.drop()
+      删除数据库：db.dropDatabase()
+     eg         db.user.insert({"name":"alin1"})
+                WriteResult({ "nInserted" : 1 })
+                > db.user.find()
+                { "_id" : ObjectId("5c90350cac09f1b952bee8ed"), "name" : "alin1" }
+                > db.user.findOne()
+                { "_id" : ObjectId("5c90350cac09f1b952bee8ed"), "name" : "alin1" }
+                > db.user.remove({"name":"alin1"})
+                WriteResult({ "nRemoved" : 1 })
+                > db.user.find()
+                > db.user.drop()
+                true
+                > db.user.find()
       加载js文件 load('./xx.js')
+eg  load('./1.js')
+    connecting to: mongodb://127.0.0.1:27017/shop
+    Implicit session: session { "id" : UUID("54c74ad1-cdc4-4743-b896-53226db85e58") }
+    MongoDB server version: 4.0.6
+    insert success
+    true
+    > db.user.find()
+    { "_id" : ObjectId("5c903b8f4a1b5fdc1a3c66e5"), "username" : "alin", "regesterTime" : 1552956303000 }
+
+
+    更新数据: 
+        方法：1.$set:  db.user.update({name:'alin1'},{$set:{age:18}})       //更改age=18  如果只更改某一用户的某一项信息，需要在db.user.update({user1},{new user1})       
+             2.$unset: db.user.update({name:'alin1'},{$set:{hobby:''}})     【注】hobby加不加''都可以  //将hobby变成空的  //删除某一用户一个数组（hobby）
+             3.upsert:  db.user.update({name:'alin1'},{$set:{age:22}},{upsert:true})   //如果有age这个属性那就更新，没有该属性就添加age属性
+             4.multi： db.user.update({},{$set:{hobby:['bat']}},{multi:true})    //所有user都加
+             5.$push: db.user.update({name:'alin'},{$push:{hobby:'吃鸡'}})       //给某一特定对象的数组内增加一个元素
+             6.$addToSet : 作用同5，但是多了个检测 添加项内容有没有存在 ，$push的话增加的相同项也会被加进数组
+             7.通过$set改变数据中第一个的值：db.user.update({name:'alin1'},{$set:{'hobby.0':'bytedance'}})
+             8.
