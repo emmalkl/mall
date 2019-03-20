@@ -214,3 +214,22 @@ eg  load('./1.js')
             db.tel.ensureIndex({tel:1})
             db.tel.getIndexes()
             db.tel.dropIndex({tel:1})
+14.用户注册及登陆功能
+   我的profile： main.js中引入(Cell, CellGroup,Tab, Tabs)    ----    van-tab标签页 van-cell-group单元格
+     <van-field label="用户名" require clearable placeholder="请输入用户名" v-model="loginUsername"></van-field>
+                                *      小x号                                 双向数据绑 
+    注册时在密码那栏加type:"password"  就变成了非铭文的形式
+    -----给注册按钮绑定click事件 -- 异步操作axios --
+ 后端项目koa2  ：新建项目shop_server
+                npm init >> npm install koa --save  >> node index.js 
+ 数据库: 下载robot--
+
+ 15.mongoose:node和mongodb数据通讯的数据建模库
+      
+    安装：npm install mongoose --save  (后端项目中)
+    新建init.js初始化mongoose
+    将init.js引入index.js中 结果是server和mongodb连接成功   ？？？
+
+    schema定义数据模型并引入
+    model写到后端文件夹，它是和数据库联系的
+

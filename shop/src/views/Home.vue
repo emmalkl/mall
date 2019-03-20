@@ -228,9 +228,9 @@ import url from '@/service.config.js'
       // axios.get('https://bird.ioliu.cn/v2?url=http://api.douban.com/v2/movie/top250?start=25&count=25').then(res=>{
       //    console.log(res)
       // })
-      let url1='http://www.alin.com/getlist';
-      let url2='http://www.alin.com/getuser';
-      let url5='http://www.alin.com/getVarietyItem';
+      // let url1='http://www.alin.com/getlist';
+      // let url2='http://www.alin.com/getuser';
+      // let url5='http://www.alin.com/getVarietyItem';
       let url6=url.getVarietyItem;
       axios.get(url6).then(res=>{
         console.log(res);

@@ -1,7 +1,7 @@
 import Mock from 'mockjs' 
-import data from './data.json'
+// import data from './data.json'
 
-Mock.mock('http://www.alin.com/getlist',{data:data.list})
+/*Mock.mock('http://www.alin.com/getlist',{data:data.list})
 
 
 //mock第二种方法
@@ -27,7 +27,7 @@ Mock.mock('http://www.alin.com/list',{
             'text':'@sentence(6,22)'//6-22个单词
         }
     ]
-});
+});*/
 
 
 //random
