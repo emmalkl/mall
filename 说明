@@ -201,4 +201,16 @@ eg  load('./1.js')
              5.$push: db.user.update({name:'alin'},{$push:{hobby:'吃鸡'}})       //给某一特定对象的数组内增加一个元素
              6.$addToSet : 作用同5，但是多了个检测 添加项内容有没有存在 ，$push的话增加的相同项也会被加进数组
              7.通过$set改变数据中第一个的值：db.user.update({name:'alin1'},{$set:{'hobby.0':'bytedance'}})
-             8.
+             8.findAndModify：可以返回结果 见4.js
+    查找数据find:见5.js和6.js
+             1.db.user.find() 所有数据
+             2.$lt $at $lte $get
+             3.$in
+             4.$or $and $not
+             5.数组$all $in $size
+             6.分页：limit skip sort
+             7.js forEach
+    索引：   生成随机数据7.js
+            db.tel.ensureIndex({tel:1})
+            db.tel.getIndexes()
+            db.tel.dropIndex({tel:1})
