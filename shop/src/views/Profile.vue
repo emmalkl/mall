@@ -7,7 +7,7 @@
           <van-field label="密码" require clearable placeholder="请输入密码" v-model="loginPassword"></van-field>
         </van-cell-group>
         <div>
-          <van-button type="primary" size="large">登陆</van-button>
+          <van-button @click="loginHandle" type="primary" size="large">登录</van-button>
         </div>
       </van-tab>
       <van-tab title="注册">
@@ -40,17 +40,38 @@ import url from '@/service.config.js'
        //注册的处理方法
        registHandle(){
          axios({
-           url:'',
-           methods:'post',
+           url:url.registUser,
+           method:'post',
            data:{
              username:this.registUsername,
              password:this.registPassword
            }
          }).then(res=>{
-
+          console.log(res);//  ???res.data.code
+            if(res.data.code==200){
+              this.$toast.success('注册成功');
+              //注册完清空自己输入的
+              this.registUsername=this.registPassword='';
+            }else{
+              this.$toast.fail('注册失败')
+            }
          }).catch(err=>{
-
+             console.log(err);
+             this.$toast.fail('注册失败')
          })
+       },
+       //登录的处理方法     
+       loginHandle(){
+          axios({
+            url:url.loginUser,
+            method:'post',
+            username:this.loginUsername,
+            password:this.loginPassword
+          }).then(res=>{
+              console.log(res);
+          }).catch(err=>{
+              console.log(err)
+          })
        }
      }
   }
