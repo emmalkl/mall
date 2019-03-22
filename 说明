@@ -263,6 +263,8 @@ eg  load('./1.js')
 1."E11000 duplicate key error collection: shop1.users index: userName_1 dup key: { : null }"
    有多个主键存在
 2.dependencies:生产环境下，上线后依然可以被使用
+3.Cannot read property 'protocol' of undefined
+    axios的问题
 
 
 

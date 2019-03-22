@@ -65,12 +65,14 @@ import url from '@/service.config.js'
           axios({
             url:url.loginUser,
             method:'post',
-            username:this.loginUsername,
-            password:this.loginPassword
+            data:{
+              username:this.loginUsername,
+              password:this.loginPassword
+            }
           }).then(res=>{
               console.log(res);
           }).catch(err=>{
-              console.log(err)
+              console.log(err);
           })
        }
      }
