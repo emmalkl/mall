@@ -7,7 +7,7 @@
           <van-field label="密码" require clearable placeholder="请输入密码" v-model="loginPassword"></van-field>
         </van-cell-group>
         <div>
-          <van-button @click="loginHandle" type="primary" size="large">登录</van-button>
+          <van-button @click="loginHandle" type="primary" size="large" loading:true>登录</van-button>
         </div>
       </van-tab>
       <van-tab title="注册">
@@ -27,6 +27,7 @@
 <script>
 import axios from 'axios'
 import url from '@/service.config.js'
+import {mapActions} from 'vuex' //将vuex中的很多个actions映射到这里
  export default{
      data(){
        return{
@@ -37,6 +38,8 @@ import url from '@/service.config.js'
        }
      },
      methods:{
+       //用vuex中的方法
+       ...mapActions(['loginAction']),
        //注册的处理方法
        registHandle(){
          axios({
@@ -47,7 +50,7 @@ import url from '@/service.config.js'
              password:this.registPassword
            }
          }).then(res=>{
-          console.log(res);//  ???res.data.code
+          //console.log(res);//  ???res.data.code
             if(res.data.code==200){
               this.$toast.success('注册成功');
               //注册完清空自己输入的
@@ -63,7 +66,7 @@ import url from '@/service.config.js'
        //登录的处理方法     
        loginHandle(){
           axios({
-            url:url.loginUser,
+            url: url.loginUser,
             method:'post',
             data:{
               username:this.loginUsername,
@@ -71,8 +74,27 @@ import url from '@/service.config.js'
             }
           }).then(res=>{
               console.log(res);
+              if(res.data.code==200){
+                //模拟 promise管理异步操作
+                  new Promise((resolve,reject)=>{
+                    setTimeout(()=>{
+                      resolve();
+                    },1000)
+                  }).then(()=>{
+                     this.$toast.success('登陆成功');
+                     //保存登陆状态
+                     this.loginAction(res.data.userInfo);
+                     this.$router.push('/')
+                  }).catch(err=>{
+                    this.$toast.fail('保存状态失败')
+                    console.log(err);
+                  })
+              }else{
+
+              }
           }).catch(err=>{
               console.log(err);
+              this.$toast.fail('登录失败')
           })
        }
      }

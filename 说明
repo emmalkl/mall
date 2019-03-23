@@ -243,6 +243,13 @@ eg  load('./1.js')
 
 16.加盐加密：bcrypt 
    登录
+   koa2-session/cookie-session :保存用户当前登陆状态
+17.vuex: 状态管理模式，解决多个试图同时依赖于某个状态，vue多个页面都需要某一个值
+   1.在store.js中写，并且在登陆的页面进行引入import {mapActions} from 'vuex' ，且methods中...mapActions([loginAction])
+   然后loginAction进行调用---保存登录状态
+   2.然后在首页将“用户名”登陆的信息显示出来，同样在home引入import {mapState} from 'vuex',然后在计算属性computed中
+   ...mapActions(['userInfo']) 之后就可以用state了
+   
 
 
 
