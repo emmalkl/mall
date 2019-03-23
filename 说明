@@ -249,9 +249,35 @@ eg  load('./1.js')
    然后loginAction进行调用---保存登录状态
    2.然后在首页将“用户名”登陆的信息显示出来，同样在home引入import {mapState} from 'vuex',然后在计算属性computed中
    ...mapActions(['userInfo']) 之后就可以用state了
-   
-
-
+18.分类：
+   将json数据存储到数据库：1.首先在model/Product.js里创建模板
+                     eg   require进来mongoose、Schema
+                          const productSchema=new Schema({
+                                id:Schema.Types.ObjectId,
+                                name:String,
+                                img:String,
+                                price:Number,
+                                company:String,
+                                city:String,
+                                type:Number
+                            })
+                          mongoose.model('Product',productSchema);
+                          2.然后在controller/product.js进行数据处理
+                        require引入koa 、koa-router及它的实例new Router()  、 mongoose  、fs
+                        router.get('./方法'，async (ctx)=>{
+                            fs.readFile('./xxx.json','utf8',(err,data)=>{//data是json数组
+                                 data=JSON.parse(data);//转化成对象
+                                 let count=0;
+                                 const Product=mongoose.model('Product');
+                                 data.map((value,index)=>{//循环data里每个小对象
+                                    let product=new Product(value);//每个小对象转化成模板的格式
+                                    product.save().then(()=>{
+                                        count++;
+                                    console.log('成功：'+count)
+                                    }).catch();//存储数据
+                                 })
+                            })
+                        })
 
 
 
