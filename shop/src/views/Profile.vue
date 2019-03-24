@@ -84,13 +84,13 @@ import {mapActions} from 'vuex' //将vuex中的很多个actions映射到这里
                      this.$toast.success('登陆成功');
                      //保存登陆状态
                      this.loginAction(res.data.userInfo);
-                     this.$router.push('/')
+                    //  this.$router.push('/')
+                    //验证登陆成功后返回前一页
+                    this.$router.go(-1)
                   }).catch(err=>{
                     this.$toast.fail('保存状态失败')
                     console.log(err);
                   })
-              }else{
-
               }
           }).catch(err=>{
               console.log(err);

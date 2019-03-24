@@ -6,6 +6,9 @@ const URL={
     registUser : SERVER+'/user/registUser',//控制器user.js下的registUser方法,user在index.js中命名
     loginUser : SERVER+'/user/loginUser',
     getTypes:SERVER+'/type/getTypes',
-    getProductByType:SERVER+'/product/getProductByType'
+    getProductByType:SERVER+'/product/getProductByType',
+    getDetail:SERVER+'/product/getDetail',
+    addCart:SERVER+'/cart/addCart',
+    getCart:SERVER+'/cart/getCart'
 };
 export default URL;//??大写

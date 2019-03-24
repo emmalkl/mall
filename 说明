@@ -278,12 +278,60 @@ eg  load('./1.js')
                                  })
                             })
                         })
+    footerbar组件
+    JSON.stringify()??
+19.购物车:
+   数据库存储cart  同注册
+   
+   数据库关联
 
 
-
-
-
-
+20.优化
+  1. 刷新界面footerbar选中问题：
+     描述：页面刷新时，选中的是首页
+     解决：van-tabbar有一个change方法可以得到选中的active；
+           使用localStorage存active；
+             created(){
+                this.active=localStorage.getItem('active')
+            },
+            methods:{
+                change(active){
+                localStorage.setItem('active',active);
+                }
+            }
+  
+  2.缓存路由组件：
+     描述：当前选中分类eg烘干机，点我的之后再点回分类时又跳到第一个
+     解决：<keep-alive>
+            <router-view></router-view>
+          </keep-alive>  app.vue中,减少请求发送,
+     但是有些不想缓存,那么方法是:
+     在router.js中配置
+         meta:{
+            KeepAlive:false
+        }
+     >>app.vue中
+     <keep-alive>
+       <router-view v-if="$route.meta.KeepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.KeepAlive"></router-view>
+  3.路由组件懒加载：
+    目的：点击某个功能时再加载这个js文件,用的时候在调用
+    解决：
+    router.js将import Home from './views/Home.vue'  转换为
+      let Home=()=>import('./views/Home.vue')
+  4.错误页面处理404
+    描述：输入其他不存在的路径
+    解决：写一个Error.vue页面，在router.js中配置path：'*'
+  5.ui按需加载:减少打包文件的体积
+  6.打包文件分析：在vue.config.js中devserver自动打开
+    build里 后面加--report 分析打包文件有多大
+    用不到的大文件可以进行优化如mock.js
+  7.gzip:压缩文件是最小的
+    方法：  安装npm install --save-dev compression-webpack-plugin
+           服务器端nginx  
+           前端配置见vue.config.js
+           
 
 
 

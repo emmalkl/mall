@@ -14,7 +14,7 @@
             <van-col span="16" class="container">
               <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
                <van-list class="content" v-model="isLoading" @load="onload" :finished="finished">
-                <div class="content-item" v-for="(item,index) in productList" :key="index">
+                <div class="content-item" @click="godetail(item._id)" v-for="(item,index) in productList" :key="index">
                   <img :src="item.img" alt="">
                   <p class="content-item-name">{{item.name}}</p>
                   <p>{{item.price}}</p>
@@ -97,6 +97,26 @@ import url from '@/service.config.js'
         this.productList=[];
         this.getproductList();
       },2000)
+    },
+    godetail(id){
+      // console.log(id);
+      // this.$router.push({
+      //   name:'detail',//跳转到哪个组件
+      //   params:{//参数,对象
+      //     id:id  //名字：形参
+      //   }
+      // });
+
+//方法二：类似get传参，在url后拼接了id=....
+      // this.$router.push({
+      //   path:'/detail',
+      //   query:{
+      //     id:id
+      //   }
+      // })
+//方法三
+    //在router.js里{path:'/detail/:id',name:'detail',component:Detail}
+     this.$router.push(`/detail/${id}`)
     }
     }
   }

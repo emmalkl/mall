@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {//存储数据 将用户登陆信息保存在vuex中
      userInfo:{
-       username:'未登录'
+      //  username:'未登录'
+      //为空，前端去判断是不是登陆
      }
   },
   getters:{//数据筛选
