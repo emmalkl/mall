@@ -9,6 +9,7 @@ const URL={
     getProductByType:SERVER+'/product/getProductByType',
     getDetail:SERVER+'/product/getDetail',
     addCart:SERVER+'/cart/addCart',
-    getCart:SERVER+'/cart/getCart'
+    getCart:SERVER+'/cart/getCart',
+    delCart:SERVER+'/cart/delCart'
 };
 export default URL;//??大写

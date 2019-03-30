@@ -19,7 +19,7 @@ export default {
   methods:{
     change(active){
       //输出当前选中标签
-      console.log(active);
+      // console.log(active);
       //使用localStorage存active  存的时候是string型
       localStorage.setItem('active',active);
     }

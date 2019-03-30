@@ -2,7 +2,7 @@
    <div>
      <van-nav-bar title="购物车"></van-nav-bar>
       <div class="card">
-        <van-card 
+        <van-card class="card-content"
         v-for="(item,index) in productList" :key="index"
         :price="item.price"
         :desc="item.compony"  
@@ -60,7 +60,8 @@ import url from '@/service.config.js'
         }).then(res=>{
           console.log(res);
           for(let item of res.data){
-            this.productList.push(item.productId)
+            this.productList.push(item.productId);
+            // console.log(item) 
           }
         }).catch(err=>{
           console.log(err)
@@ -73,8 +74,21 @@ import url from '@/service.config.js'
       },
       delCart(id,index){
         //删除数据库中的数据，如果删除成功进入回调函数，在回调函数中如下代码
-        this.productList.splice(index,1);
+        // console.log(1);
+        axios({
+          url:url.delCart,
+          method:'get',
+          params:{
+          productId:id
+          }
+        }).then(res=>{
+          console.log(res);
+          this.productList.splice(index,1);
+        }).catch(err=>{
+          console.log(err);
+        });       
       }
+      
     }
   }
 </script>
@@ -82,5 +96,8 @@ import url from '@/service.config.js'
 <style lang="scss">
 .submit-bar{
   margin-bottom: 1rem;
+}
+.card-content:last-child{
+  margin-bottom: 2rem;
 }
 </style>

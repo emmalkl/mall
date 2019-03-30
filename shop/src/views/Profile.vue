@@ -73,7 +73,7 @@ import {mapActions} from 'vuex' //将vuex中的很多个actions映射到这里
               password:this.loginPassword
             }
           }).then(res=>{
-              console.log(res);
+              // console.log(res);
               if(res.data.code==200){
                 //模拟 promise管理异步操作
                   new Promise((resolve,reject)=>{
